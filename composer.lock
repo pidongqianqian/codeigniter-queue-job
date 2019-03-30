@@ -1,0 +1,56 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "7e2f01e7b04efccf8118865f5b1aa2a9",
+    "packages": [
+        {
+            "name": "yidas/codeigniter-queue-worker",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yidas/codeigniter-queue-worker.git",
+                "reference": "9a0d8e8d3ac945f756abcafde614124170a3911c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yidas/codeigniter-queue-worker/zipball/9a0d8e8d3ac945f756abcafde614124170a3911c",
+                "reference": "9a0d8e8d3ac945f756abcafde614124170a3911c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "yidas\\queue\\worker\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "CodeIgniter 3 Queue Worker Management Controller",
+            "homepage": "https://github.com/yidas/codeigniter-queue-worker",
+            "keywords": [
+                "codeigniter",
+                "listener",
+                "queue",
+                "worker",
+                "worker-manage"
+            ],
+            "time": "2018-10-06T07:02:08+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

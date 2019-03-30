@@ -1,0 +1,20 @@
+{
+    "name": "pidongqq/codeigniter-queue-job",
+    "description": "CodeIgniter Quick and Convenient Queue Installation Package",
+    "type": "library",
+    "require": {
+        "yidas/codeigniter-queue-worker": "1.0.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "pidongqianqian",
+            "email": "1163765691@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+    "psr-4": {
+        "pidong\\queue": "src/"
+    }
+}
