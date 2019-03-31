@@ -6,11 +6,6 @@ use pidong\queue\libraries\jobs;
 
 class Controller extends \yidas\queue\worker\Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     protected function init()
     {
         // Optional autoload (Load your own libraries or models)
@@ -67,27 +62,5 @@ class Controller extends \yidas\queue\worker\Controller
         }
 
         return false;
-    }
-
-    /**
-     * @param $queue
-     * @param $controller
-     * @param $method
-     * @param $params
-     * @return bool
-     */
-    public function dispatch($queue, $controller, $method, $params)
-    {
-        if (empty($queue) || empty($controller) || empty($method) || empty($params)) {
-            return false;
-        }
-        $description = '';
-        $belongTo = null;
-        return $this->jobs->create($queue, $controller, $method, $params, $description, $belongTo);
-    }
-
-    public function onConnection($connectName)
-    {
-        $this->{'queue_' . $connectName} = new jobs(array('redis' => array('connection_group' => $connectName)));
     }
 }

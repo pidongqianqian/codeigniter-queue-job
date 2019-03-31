@@ -1,4 +1,4 @@
-<?php namespace pidong\queue\libraries;
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
@@ -57,26 +57,22 @@ class Redis {
 		log_message('debug', 'Redis Class Initialized');
 
 		$this->_ci = get_instance();
-		$this->_ci->load->config('redis');
+		$this->_ci->load->config('queue');
+        $connections =  $this->_ci->config->item('queue_connections');
 
 		// Check for the different styles of configs
 		if (isset($params['connection_group']))
 		{
 			// Specific connection group
-			$config = $this->_ci->config->item('redis_' . $params['connection_group']);
-		}
-		elseif (is_array($this->_ci->config->item('redis_default')))
-		{
-			// Default connection group
-			$config = $this->_ci->config->item('redis_default');
+			$config = $connections[$params['connection_group']];
 		}
 		else
 		{
 			// Original config style
 			$config = array(
-				'host' => $this->_ci->config->item('redis_host'),
-				'port' => $this->_ci->config->item('redis_port'),
-				'password' => $this->_ci->config->item('redis_password'),
+				'host' => $connections[0]['host'],
+				'port' => $connections[0]['port'],
+				'password' => $connections[0]['password'],
 			);
 		}
 
