@@ -15,7 +15,8 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "pidong\\queue\\": "src/"
+            "pidong\\queue\\": "src/",
+            "pidong\\queue\\libraries\\": "libraries/"
         }
     }
 }

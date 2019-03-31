@@ -1,4 +1,4 @@
-<?php
+<?php namespace pidong\queue\libraries;
 if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
 
@@ -65,6 +65,7 @@ class Jobs {
 	 */
 	public function __construct($params) {
 		$this -> _ci = &get_instance();
+
 		$this -> _ci -> load -> library('Redis', isset($params['redis']) ? $params['redis'] : []);
 		$this -> _ci -> load -> library('mcurl');
 	}
@@ -242,7 +243,7 @@ class Jobs {
 	 * @return  bool 1 if ok, 0 if not
 	 */
 	public function remove_job($queue, $data) {
-		return $this -> _ci -> lrem($this -> _queue . ':' . $queue, $data , 1);
+		return $this -> _ci -> redis -> lrem($this -> _queue . ':' . $queue, $data , 1);
 		// TODO: fix this function
 
 		// Call to remove_status_job($id)

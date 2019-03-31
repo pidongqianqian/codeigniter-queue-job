@@ -1,16 +1,26 @@
 <?php
 
 namespace pidong\queue;
+use pidong\queue\libraries\jobs;
 
 
 class Controller extends \yidas\queue\worker\Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     protected function init()
     {
         // Optional autoload (Load your own libraries or models)
         $this->load->helper('url');
-        $this->load->library('jobs', array('redis' => array('connection_group' => 'notify')));
         $this->config->load('queue');
+        $connections = $this->config->item('queue_connections');
+        foreach ($connections as $name => $connection) {
+            $this->{'queue_' . $name} = new jobs(array('redis' => array('connection_group' => $name)));
+            //$this->load->library('jobs', array('redis' => array('connection_group' => $name)), 'queue_' . $name);
+        }
     }
 
     protected function handleWork()
@@ -27,8 +37,18 @@ class Controller extends \yidas\queue\worker\Controller
 
         // return `true` for job existing, which would keep handling.
         //return true;
-        $queueNames = $this->jobs->queues();
-        return $this->jobs->doWorker('worker', $queueNames);
+
+        $connections = $this->config->item('queue_connections');
+
+        foreach ($connections as $name => $connection) {
+            $queueNames = $this->{'queue_' . $name}->queues();
+            log_message('debug', '$queueNames'.json_encode($queueNames));
+            if ($this->{'queue_' . $name}->doWorker('worker', $queueNames)) {
+                return true;
+            };
+        }
+
+        return false;
     }
 
     protected function handleListen()
@@ -37,9 +57,37 @@ class Controller extends \yidas\queue\worker\Controller
         // return `true` for job existing, which leads to dispatch worker(s).
         // return `false` for job not found, which would keep detecting new job
         //return $this->myjobs->exists();
-        $opt= getopt('-queue=:');
-        log_message('debug', 'cccc:' . json_encode($opt));
-        $queueNames = $this->jobs->queues();
-        return $this->jobs->jobExistInRedis($queueNames);
+        $connections = $this->config->item('queue_connections');
+
+        foreach ($connections as $name => $connection) {
+            $queueNames = $this->{'queue_' . $name}->queues();
+            if ($this->{'queue_' . $name}->jobExistInRedis($queueNames)) {
+                return true;
+            };
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $queue
+     * @param $controller
+     * @param $method
+     * @param $params
+     * @return bool
+     */
+    public function dispatch($queue, $controller, $method, $params)
+    {
+        if (empty($queue) || empty($controller) || empty($method) || empty($params)) {
+            return false;
+        }
+        $description = '';
+        $belongTo = null;
+        return $this->jobs->create($queue, $controller, $method, $params, $description, $belongTo);
+    }
+
+    public function onConnection($connectName)
+    {
+        $this->{'queue_' . $connectName} = new jobs(array('redis' => array('connection_group' => $connectName)));
     }
 }

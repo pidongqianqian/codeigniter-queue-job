@@ -1,4 +1,6 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php namespace pidong\queue\libraries;
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 /**
  * CodeIgniter Redis
  *
