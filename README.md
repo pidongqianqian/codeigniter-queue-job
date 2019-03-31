@@ -58,10 +58,17 @@ $this->onConnection($connectName)->dispatch($queueName, $controller, $method, $p
   在项目根目录执行
   
   ```
-    $ php public/index.php Pidong/Queue/Controller/launch
+    $ php public/index.php Pidong/Queue/Controller/launch //开启后台程序，监听任务并执行worker
+    
+    //只启动监听程序
+    $ php public/index.php Pidong/Queue/Controller/listen
+    //只启动worker
+    $ php public/index.php Pidong/Queue/Controller/worker
   ```
   需要配置队列程序其他参数，比如worker子进程的数量，队列监听器没有任务时多久触发下次读取任务
   或者需要复写队列程序的一些功能，请先参考[yidas/codeigniter-queue-worker](https://github.com/yidas/codeigniter-queue-worker)
+  
+  关于[marsanla/Codeigniter-jobQueue](https://github.com/marsanla/Codeigniter-jobQueue)，因修改了逻辑和修复了一些bug，请勿直接使用该库文，应使用本包中修改过的。具体指令，如查询当前队列名，或者当前队列中任务状态等，可进入[marsanla/Codeigniter-jobQueue](https://github.com/marsanla/Codeigniter-jobQueue)查看
   
   
   ## 鸣谢
