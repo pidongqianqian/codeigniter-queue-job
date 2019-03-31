@@ -1,7 +1,7 @@
 <?php
 
-namespace pidong\queue;
-use pidong\queue\libraries\jobs;
+namespace Pidong\Queue;
+use Pidong\Queue\Libraries\jobs;
 use CI_Controller;
 
 
