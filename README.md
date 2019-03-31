@@ -4,7 +4,7 @@ CodeIgniter Quick and Convenient Queue Installation Package
 本包最终目的是能像Laravel那样的方式快速实现CodeIgniter的队列（目前主要基于redis驱动，后续或继续加入数据库等其他驱动方式）
 主要依赖 [yidas/codeigniter-queue-worker](https://github.com/yidas/codeigniter-queue-worker)和[marsanla/Codeigniter-jobQueue](https://github.com/marsanla/Codeigniter-jobQueue)
 
-##安装/配置
+## 安装/配置
 
   1.安装composer包
    
@@ -14,7 +14,7 @@ CodeIgniter Quick and Convenient Queue Installation Package
   
   3.复制本包config目录下配置文件queue.php到项目框架application\config中
   
-##使用
+## 使用
   
   创建任务所在的控制器需继承`Pidong\Queue\QueueController`,例如：
  
@@ -53,7 +53,7 @@ $this->onConnection($connectName)->dispatch($queueName, $controller, $method, $p
 ```
 
   
-  ###启动队列程序
+  ### 启动队列程序
   
   在项目根目录执行
   
@@ -64,7 +64,7 @@ $this->onConnection($connectName)->dispatch($queueName, $controller, $method, $p
   或者需要复写队列程序的一些功能，请先参考[yidas/codeigniter-queue-worker](https://github.com/yidas/codeigniter-queue-worker)
   
   
-  ##鸣谢
+  ## 鸣谢
   [yidas/codeigniter-queue-worker](https://github.com/yidas/codeigniter-queue-worker)
   [marsanla/Codeigniter-jobQueue](https://github.com/marsanla/Codeigniter-jobQueue)
   
