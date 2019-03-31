@@ -32,6 +32,7 @@ $this->dispatch($queueName, $controller, $method, $params);
 //$queueName (string): 是队列名称（你可能需要不同的队列）
 //$controller/$method(string): 队列最终执行会在你指定的$controller/$method中处理
 //$params (array): 是你希望在队列中存的信息或参数
+//在$controller/$method获取参数使用$_POST
 ``` 
 
   使用指定连接 
