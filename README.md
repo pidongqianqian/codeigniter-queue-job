@@ -21,7 +21,7 @@ CodeIgniter Quick and Convenient Queue Installation Package
 ```php
 class Task extends Pidong\Queue\QueueController
 {
-  \\you business code
+  \\your business code
 }
 ```  
   
