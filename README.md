@@ -2,7 +2,7 @@
 CodeIgniter Quick and Convenient Queue Installation Package
 
 本包最终目的是能像Laravel那样的方式快速实现CodeIgniter的队列（目前主要基于redis驱动，后续或继续加入数据库等其他驱动方式）
-整合 [yidas/codeigniter-queue-worker](https://github.com/yidas/codeigniter-queue-worker)和[marsanla/Codeigniter-jobQueue](https://github.com/marsanla/Codeigniter-jobQueue)
+依赖 [yidas/codeigniter-queue-worker](https://github.com/yidas/codeigniter-queue-worker)和[marsanla/Codeigniter-jobQueue](https://github.com/marsanla/Codeigniter-jobQueue)
 
 ## 安装/配置
 
