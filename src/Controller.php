@@ -1,7 +1,7 @@
 <?php
 
 namespace Pidong\Queue;
-use Pidong\Queue\Libraries\jobs;
+use Pidong\Queue\Libraries\Jobs;
 
 
 class Controller extends \yidas\queue\worker\Controller
@@ -13,7 +13,7 @@ class Controller extends \yidas\queue\worker\Controller
         $this->config->load('queue');
         $connections = $this->config->item('queue_connections');
         foreach ($connections as $name => $connection) {
-            $this->{'queue_' . $name} = new jobs(array('redis' => array('connection_group' => $name)));
+            $this->{'queue_' . $name} = new Jobs(array('redis' => array('connection_group' => $name)));
             //$this->load->library('jobs', array('redis' => array('connection_group' => $name)), 'queue_' . $name);
         }
     }

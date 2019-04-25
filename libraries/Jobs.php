@@ -66,8 +66,8 @@ class Jobs {
 	public function __construct($params) {
 		$this -> _ci = &get_instance();
 
-		$this -> _ci -> load -> library('Redis', isset($params['redis']) ? $params['redis'] : []);
-		$this -> _ci -> load -> library('mcurl');
+        $this->_ci->load->library('RedisC', isset($params['redis']) ? $params['redis'] : [], 'redis');
+        $this->_ci->load->library('Mcurl');
 	}
 
 	/* ------------------------------------------------------------

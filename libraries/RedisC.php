@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @link			http://joelcox.nl
  * @license			http://www.opensource.org/licenses/mit-license.html
  */
-class Redis {
+class RedisC {
 
 	/**
 	 * CI
