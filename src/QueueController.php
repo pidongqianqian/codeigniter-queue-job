@@ -1,7 +1,7 @@
 <?php
 
 namespace Pidong\Queue;
-use Pidong\Queue\Libraries\jobs;
+use Pidong\Queue\Libraries\Jobs;
 use CI_Controller;
 
 
@@ -23,7 +23,7 @@ class QueueController extends CI_Controller
         $description = '';
         $belongTo = null;
         if(empty($this->currentJobs)) {
-            $this->currentJobs = new jobs(array());
+            $this->currentJobs = new Jobs(array());
         }
         return $this->currentJobs->create($queue, $controller, $method, $params, $description, $belongTo);
 
@@ -31,7 +31,7 @@ class QueueController extends CI_Controller
 
     public function onConnection($connectName)
     {
-        $this->{'queue_' . $connectName} = new jobs(array('redis' => array('connection_group' => $connectName)));
+        $this->{'queue_' . $connectName} = new Jobs(array('redis' => array('connection_group' => $connectName)));
         $this->currentJobs = $this->{'queue_' . $connectName};
     }
 }
